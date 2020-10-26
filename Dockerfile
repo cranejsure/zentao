@@ -11,6 +11,11 @@ COPY docker-entrypoint /usr/local/bin/docker-entrypoint
 RUN curl -s ${ZENTAO_URL} -o zbox.tar.gz && mv zbox.tar.gz /tmp \
     && chmod +x           /usr/local/bin/docker-entrypoint
 
+RUN apt-get update && \
+apt-get -y install apt-transport-https \
+    ca-certificates \
+    git
+
 EXPOSE 80 3306
 
 ENTRYPOINT ["docker-entrypoint"]
